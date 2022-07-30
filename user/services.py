@@ -29,3 +29,10 @@ class UserService:
         user = UserModel.objects.get(_id=ObjectId(id))
         user_serializer = UserSerializer(user)
         return user_serializer.data
+
+    def get_list_users_of_posts(self, posts):
+        users = []
+        for post in posts:
+            user = self.get_user_by_id(post['user_id'])
+            users.append(user['name'])
+        return users

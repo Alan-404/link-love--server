@@ -11,3 +11,8 @@ class PostService:
             post_serializer.save()
             return post_serializer.data
         return None
+
+    def get_all(self):
+        posts = PostModel.objects.all()
+        posts_serialzier = PostSerializer(posts, many=True)
+        return posts_serialzier.data

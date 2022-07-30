@@ -8,6 +8,7 @@ class PostModel(models.Model):
     user_id = models.CharField(max_length=50)
     content = models.TextField()
     mode = models.CharField(max_length=15)
+    num_media = models.IntegerField()
     likes = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
     shares = models.IntegerField(default=0)
