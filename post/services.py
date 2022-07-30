@@ -16,3 +16,15 @@ class PostService:
         posts = PostModel.objects.all()
         posts_serialzier = PostSerializer(posts, many=True)
         return posts_serialzier.data
+
+    def like_post(self, post_id):
+        post = PostModel.objects.get(_id=post_id)
+        if post is None:
+            return None
+        post_data = post.__dict__
+        post_data['likes'] += 1
+        post_serializer = PostSerializer(post, data=post_data)
+        if post_serializer.is_valid():
+            post_serializer.save()
+            return post_serializer.data
+        return None
